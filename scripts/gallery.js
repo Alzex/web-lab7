@@ -88,6 +88,7 @@ function onGalleryClick(event) {
 }
 
 function openLightbox(index) {
+  console.log(images[index].original);
   const instance = basicLightbox.create(`
         <div class="modal">
             <button class="modal__close">&times;</button>
@@ -115,6 +116,7 @@ function navigateLightbox(newIndex, instance) {
 
   const modal = instance.element();
   const img = modal.querySelector('img');
+  console.log(images[newIndex].original);
   img.src = images[newIndex].original;
 
   const btnPrev = modal.querySelector('.modal__prev');
