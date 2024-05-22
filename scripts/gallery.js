@@ -57,7 +57,7 @@ const images = [
   },
 ];
 
-const galleryContainer = document.querySelector('.gallery');
+const galleryContainer = document.querySelector('ul.gallery');
 const galleryMarkup = createGalleryMarkup(images);
 
 galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
@@ -67,8 +67,8 @@ galleryContainer.addEventListener('click', onGalleryClick);
 function createGalleryMarkup(images) {
   return images.map(({ preview, original, description }, index) => {
     return `
-            <li class="gallery__item">
-                <img class="gallery__image" src="${preview}" data-source="${original}" data-index="${index}" alt="${description}" />
+            <li>
+                <img class="image" src="${preview}" data-source="${original}" data-index="${index}" alt="${description}" />
             </li>
         `;
   }).join('');
@@ -77,7 +77,7 @@ function createGalleryMarkup(images) {
 function onGalleryClick(event) {
   event.preventDefault();
 
-  const isGalleryImage = event.target.classList.contains('gallery__image');
+  const isGalleryImage = event.target.classList.contains('image');
 
   if (!isGalleryImage) {
     return;
@@ -91,37 +91,14 @@ function openLightbox(index) {
   console.log(images[index].original);
   const instance = basicLightbox.create(`
         <div class="modal">
-            <button class="modal__close">&times;</button>
-            <button class="modal__prev">&larr;</button>
             <img src="${images[index].original}" width="800" height="600">
-            <button class="modal__next">&rarr;</button>
         </div>
     `);
 
   instance.show();
-
-  const modal = instance.element();
-  const btnClose = modal.querySelector('.modal__close');
-  const btnPrev = modal.querySelector('.modal__prev');
-  const btnNext = modal.querySelector('.modal__next');
 
   btnClose.addEventListener('click', () => instance.close());
   btnPrev.addEventListener('click', () => navigateLightbox(index - 1, instance));
   btnNext.addEventListener('click', () => navigateLightbox(index + 1, instance));
 }
 
-function navigateLightbox(newIndex, instance) {
-  if (newIndex < 0) newIndex = images.length - 1;
-  if (newIndex >= images.length) newIndex = 0;
-
-  const modal = instance.element();
-  const img = modal.querySelector('img');
-  console.log(images[newIndex].original);
-  img.src = images[newIndex].original;
-
-  const btnPrev = modal.querySelector('.modal__prev');
-  const btnNext = modal.querySelector('.modal__next');
-
-  btnPrev.onclick = () => navigateLightbox(newIndex - 1, instance);
-  btnNext.onclick = () => navigateLightbox(newIndex + 1, instance);
-}

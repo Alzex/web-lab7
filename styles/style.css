@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.gallery {
+ul.gallery {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -10,44 +10,14 @@ body {
     padding: 0;
 }
 
-.gallery li {
+ul.gallery li {
     border: 1px solid #ccc;
     padding: 5px;
 }
 
-.gallery img {
+ul.gallery img {
     display: block;
     max-width: 100%;
     height: auto;
 }
 
-.modal {
-    position: relative;
-}
-
-.modal__close,
-.modal__prev,
-.modal__next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.modal__close {
-    top: 10px;
-    right: 10px;
-    transform: none;
-}
-
-.modal__prev {
-    left: 10px;
-}
-
-.modal__next {
-    right: 10px;
-}
