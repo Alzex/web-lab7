@@ -96,9 +96,5 @@ function openLightbox(index) {
     `);
 
   instance.show();
-
-  btnClose.addEventListener('click', () => instance.close());
-  btnPrev.addEventListener('click', () => navigateLightbox(index - 1, instance));
-  btnNext.addEventListener('click', () => navigateLightbox(index + 1, instance));
 }
 
